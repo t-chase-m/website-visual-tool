@@ -174,9 +174,12 @@ function renderLoadingMarkup(profile) {
   return `
     <div class="canvas-frame">
       <div class="browser-chrome">
-        <span></span>
-        <span></span>
-        <span></span>
+        <div class="browser-chrome-controls">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="browser-address-bar">${escapeHtml(profile.domain)}</div>
       </div>
       <div
         class="mock-visual is-loading"
@@ -264,9 +267,12 @@ function renderGeneratedMarkup(profile) {
   return `
     <div class="canvas-frame">
       <div class="browser-chrome">
-        <span></span>
-        <span></span>
-        <span></span>
+        <div class="browser-chrome-controls">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="browser-address-bar">${escapeHtml(profile.domain)}</div>
       </div>
       <div
         class="mock-visual"
