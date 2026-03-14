@@ -14,20 +14,21 @@
   </head>
   <body>
     <main class="page-shell">
-      <section class="hero" aria-labelledby="page-title">
+      <header class="hero" aria-labelledby="page-title">
         <p class="eyebrow">Static front-end prototype</p>
         <h1 id="page-title">Turn any website URL into a share-ready visual.</h1>
         <p class="hero-copy">
           Mock up polished website visuals for launches, social posts, and client
           reviews in a clean, modern workspace.
         </p>
-      </section>
+      </header>
 
-      <section class="app-card" aria-label="Website visual generator">
-        <form class="control-panel" id="visual-form">
-          <div class="field-group">
-            <label class="field-label" for="url-input">Website URL</label>
+      <form class="app-card" id="visual-form" aria-label="Website visual generator">
+        <section class="control-panel" aria-label="Generator controls">
+          <section class="field-group" aria-labelledby="url-row-title">
+            <h2 class="field-label" id="url-row-title">URL input</h2>
             <div class="input-row">
+              <label class="sr-only" for="url-input">Website URL</label>
               <input
                 class="url-input"
                 id="url-input"
@@ -39,9 +40,11 @@
               />
               <button class="primary-button" type="submit">Generate visual</button>
             </div>
-          </div>
+          </section>
 
-          <div class="toolbar" aria-label="Preview controls">
+          <section class="toolbar" aria-labelledby="controls-title">
+            <h2 class="field-label" id="controls-title">Controls panel</h2>
+
             <fieldset class="segmented-group">
               <legend class="field-label">Device</legend>
               <div class="segmented-control" data-toggle-group="device">
@@ -85,13 +88,13 @@
                 </button>
               </div>
             </fieldset>
-          </div>
-        </form>
+          </section>
+        </section>
 
         <section class="preview-panel" aria-labelledby="preview-title">
           <div class="preview-header">
             <div>
-              <p class="preview-kicker">Preview</p>
+              <p class="preview-kicker">Preview panel</p>
               <h2 id="preview-title">Generated concept</h2>
             </div>
             <p class="preview-status" id="preview-status">Ready to generate</p>
@@ -130,7 +133,8 @@
             </div>
           </div>
 
-          <div class="action-row">
+          <section class="action-row" aria-labelledby="actions-title">
+            <h2 class="sr-only" id="actions-title">Action buttons</h2>
             <button class="secondary-button" type="button" data-action="download">
               Download PNG
             </button>
@@ -140,9 +144,9 @@
             <button class="secondary-button" type="button" data-action="regenerate">
               Regenerate
             </button>
-          </div>
+          </section>
         </section>
-      </section>
+      </form>
     </main>
 
     <script src="app.js"></script>
