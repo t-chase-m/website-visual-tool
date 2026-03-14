@@ -88,13 +88,13 @@ function getSiteProfile(rawUrl) {
     {
       match: ["studio", "design", "creative", "brand"],
       label: "Creative Studio",
-      kicker: "Creative partner",
+      kicker: "Creative studio",
       headline: `Design systems and launch visuals for ${brandName}`,
-      copy: `${brandName} presents a polished digital studio with featured work, service highlights, and a confident introduction.`,
+      copy: `${brandName} presents a refined studio homepage with featured work, service highlights, and a confident introduction.`,
       nav: ["Work", "Services", "Process"],
       cards: [
         ["Selected work", "Recent identity and campaign launches."],
-        ["Capabilities", "Brand design, websites, and social kits."],
+        ["Capabilities", "Brand design, websites, and launch kits."],
         ["Client trust", "Structured delivery for growing teams."],
       ],
       metrics: ["Brand refresh", "Case studies", "Fast turnaround"],
@@ -104,7 +104,7 @@ function getSiteProfile(rawUrl) {
       label: "Online Store",
       kicker: "New arrivals",
       headline: `A simple storefront experience for ${brandName}`,
-      copy: `${brandName} looks like a modern commerce homepage with featured products, supporting offers, and helpful browsing sections.`,
+      copy: `${brandName} reads like a modern commerce homepage with featured products, supporting offers, and calm browsing sections.`,
       nav: ["Shop", "Collections", "Support"],
       cards: [
         ["Best sellers", "Popular picks surfaced above the fold."],
@@ -116,9 +116,9 @@ function getSiteProfile(rawUrl) {
     {
       match: ["cloud", "data", "ai", "tech", "app", "dev", "labs"],
       label: "Software Platform",
-      kicker: "Product overview",
+      kicker: "Platform overview",
       headline: `${brandName} helps teams move faster online`,
-      copy: `${brandName} reads like a lightweight SaaS homepage with a product summary, proof points, and feature blocks arranged like a real site capture.`,
+      copy: `${brandName} reads like a focused SaaS homepage with product framing, proof points, and feature blocks arranged like a real site capture.`,
       nav: ["Platform", "Solutions", "Pricing"],
       cards: [
         ["Automations", "Core workflows framed as feature modules."],
@@ -131,9 +131,9 @@ function getSiteProfile(rawUrl) {
 
   const fallbackProfile = {
     label: "Business Website",
-    kicker: "Featured website",
+    kicker: "Website overview",
     headline: `${brandName} brings a polished web presence together`,
-    copy: `${brandName} is shown as a clean homepage concept with a top navigation, lead section, and supporting content that feels closer to a believable capture.`,
+    copy: `${brandName} is shown as a composed homepage concept with a top navigation, lead section, and supporting content that feels closer to a believable capture.`,
     nav: ["Product", "Solutions", "Pricing"],
     cards: [
       ["Overview", "Fast, polished sections for a credible first glance."],
@@ -203,9 +203,9 @@ function renderLoadingMarkup(profile) {
         <section class="mock-hero">
           <div class="mock-hero-copy">
             <div class="mock-kicker">Generating preview</div>
-            <div class="mock-headline">Building a believable page for ${escapeHtml(profile.brandName)}</div>
+            <div class="mock-headline">Composing a polished preview for ${escapeHtml(profile.brandName)}</div>
             <div class="mock-copy">
-              Arranging navigation, hero content, and supporting blocks in a ${escapeHtml(state.style.toLowerCase())} layout.
+              Refining navigation, hero content, and supporting sections in a ${escapeHtml(state.style.toLowerCase())} presentation.
             </div>
           </div>
           <div class="mock-hero-panel">
@@ -222,7 +222,7 @@ function renderLoadingMarkup(profile) {
         <div class="mock-metrics">
           <div class="metric-card">
             <span class="metric-label">Status</span>
-            <strong>Loading</strong>
+            <strong>In progress</strong>
           </div>
           <div class="metric-card">
             <span class="metric-label">Device</span>
@@ -295,8 +295,8 @@ function renderGeneratedMarkup(profile) {
             <div class="mock-headline">${escapeHtml(profile.headline)}</div>
             <div class="mock-copy">${escapeHtml(profile.copy)}</div>
             <div class="mock-hero-actions">
-              <span class="mock-button-pill">Get started</span>
-              <span class="mock-button-pill is-secondary">View details</span>
+              <span class="mock-button-pill">Explore</span>
+              <span class="mock-button-pill is-secondary">See details</span>
             </div>
           </div>
           <div class="mock-hero-panel">
@@ -353,7 +353,7 @@ function finishGeneration() {
   state.isLoading = false;
   state.hasGenerated = true;
   renderPreview();
-  updatePreviewStatus(`Generated mockup for ${normalizeUrl(urlInput.value)}`);
+  updatePreviewStatus(`Preview ready for ${normalizeUrl(urlInput.value)}`);
 }
 
 function startGeneration() {
@@ -365,7 +365,7 @@ function startGeneration() {
   clearTimeout(state.loadingTimer);
   state.isLoading = true;
   renderPreview();
-  updatePreviewStatus("Generating preview...");
+  updatePreviewStatus("Building preview...");
 
   state.loadingTimer = window.setTimeout(() => {
     finishGeneration();
@@ -400,18 +400,18 @@ toggleGroups.forEach((group) => {
     renderPreview();
 
     if (state.isLoading) {
-      updatePreviewStatus("Generating preview...");
+      updatePreviewStatus("Building preview...");
       return;
     }
 
     if (state.hasGenerated) {
       updatePreviewStatus(
-        `Showing ${state.device.toLowerCase()} ${state.style.toLowerCase()} preview`
+        `${state.device} · ${state.style}`
       );
       return;
     }
 
-    updatePreviewStatus("Ready to generate");
+    updatePreviewStatus("Ready");
   });
 });
 
@@ -434,7 +434,7 @@ urlInput.addEventListener("input", () => {
     if (isPrelaunchState()) {
       return;
     }
-    updatePreviewStatus("Enter a URL to generate a preview");
+    updatePreviewStatus("Enter a URL to begin");
     return;
   }
 
@@ -442,7 +442,7 @@ urlInput.addEventListener("input", () => {
     if (isPrelaunchState()) {
       return;
     }
-    updatePreviewStatus("Ready to generate");
+    updatePreviewStatus("Ready");
   }
 });
 
@@ -456,16 +456,16 @@ actionButtons.forEach((button) => {
     }
 
     if (action === "download") {
-      updatePreviewStatus("Download is not wired up in this static prototype");
+      updatePreviewStatus("PNG export is not available in this prototype");
       return;
     }
 
     if (action === "copy") {
-      updatePreviewStatus("Copy is not wired up in this static prototype");
+      updatePreviewStatus("Copy is not available in this prototype");
     }
   });
 });
 
 updateGenerateButton();
 renderPreview();
-updatePreviewStatus("Enter a URL to generate a preview");
+updatePreviewStatus("Enter a URL to begin");

@@ -15,18 +15,18 @@
   <body>
     <main class="page-shell is-prelaunch" id="page-shell">
       <header class="hero" aria-labelledby="page-title">
-        <p class="eyebrow">Static front-end prototype</p>
+        <p class="eyebrow">Front-end prototype</p>
         <h1 id="page-title">Turn any website URL into a share-ready visual.</h1>
         <p class="hero-copy">
-          Mock up polished website visuals for launches, social posts, and client
-          reviews in a clean, modern workspace.
+          Create polished website visuals for launches, social posts, and client
+          reviews in a calm, focused workspace.
         </p>
       </header>
 
       <form class="app-card" id="visual-form" aria-label="Website visual generator">
         <section class="control-panel" aria-label="Generator controls">
           <section class="field-group" aria-labelledby="url-row-title">
-            <h2 class="field-label" id="url-row-title">URL input</h2>
+            <h2 class="field-label" id="url-row-title">Website URL</h2>
             <div class="input-row">
               <label class="sr-only" for="url-input">Website URL</label>
               <input
@@ -37,12 +37,12 @@
                 inputmode="url"
                 placeholder="https://example.com"
               />
-              <button class="primary-button" type="submit" disabled>Generate Visual</button>
+              <button class="primary-button" type="submit" disabled>Generate Preview</button>
             </div>
           </section>
 
           <section class="toolbar" aria-labelledby="controls-title">
-            <h2 class="field-label" id="controls-title">Controls panel</h2>
+            <h2 class="field-label" id="controls-title">Presentation</h2>
 
             <fieldset class="segmented-group">
               <legend class="field-label">Device</legend>
@@ -101,10 +101,10 @@
         <section class="preview-panel" aria-labelledby="preview-title">
           <div class="preview-header">
             <div>
-              <p class="preview-kicker">Preview panel</p>
-              <h2 id="preview-title">Generated concept</h2>
+              <p class="preview-kicker">Live preview</p>
+              <h2 id="preview-title">Visual concept</h2>
             </div>
-            <p class="preview-status" id="preview-status">Ready to generate</p>
+            <p class="preview-status" id="preview-status">Ready</p>
           </div>
 
           <div class="preview-stage" id="preview-stage" data-device="Desktop" data-style="Clean">
@@ -138,12 +138,12 @@
                     <div class="mock-kicker">Featured website</div>
                     <div class="mock-headline">Modern website visual preview</div>
                     <div class="mock-copy">
-                      This static mockup simulates how a captured page could be framed,
-                      styled, and exported for sharing.
+                      A polished placeholder composition that feels closer to a
+                      real captured homepage.
                     </div>
                     <div class="mock-hero-actions">
-                      <span class="mock-button-pill">Get started</span>
-                      <span class="mock-button-pill is-secondary">View demo</span>
+                      <span class="mock-button-pill">Explore</span>
+                      <span class="mock-button-pill is-secondary">See details</span>
                     </div>
                   </div>
                   <div class="mock-hero-panel">
@@ -159,33 +159,33 @@
                 </section>
                 <div class="mock-metrics">
                   <div class="metric-card">
-                    <span class="metric-label">Format</span>
+                    <span class="metric-label">Style</span>
                     <strong id="mock-style-label">Clean</strong>
                   </div>
                   <div class="metric-card">
                     <span class="metric-label">Output</span>
-                    <strong>PNG mockup</strong>
+                    <strong>Preview ready</strong>
                   </div>
                   <div class="metric-card">
                     <span class="metric-label">State</span>
-                    <strong>Prototype</strong>
+                    <strong>Concept</strong>
                   </div>
                 </div>
                 <div class="mock-content-grid">
                   <article class="mock-content-card">
                     <span class="mock-card-label">Overview</span>
-                    <strong>Fast, polished sections</strong>
-                    <p>Balanced blocks that make the capture feel like a real homepage.</p>
+                    <strong>Balanced page structure</strong>
+                    <p>Subtle sections help the preview read like a composed homepage.</p>
                   </article>
                   <article class="mock-content-card">
                     <span class="mock-card-label">Highlights</span>
-                    <strong>Reusable components</strong>
-                    <p>Cards, navigation, and supporting content create a believable layout.</p>
+                    <strong>Clear content rhythm</strong>
+                    <p>Navigation, hero content, and cards create a more credible capture.</p>
                   </article>
                   <article class="mock-content-card">
-                    <span class="mock-card-label">Results</span>
-                    <strong>Share-ready framing</strong>
-                    <p>A static prototype that still feels closer to a captured product page.</p>
+                    <span class="mock-card-label">Output</span>
+                    <strong>Presentation-ready framing</strong>
+                    <p>The result stays minimal while feeling more product-like and intentional.</p>
                   </article>
                 </div>
               </div>
@@ -195,13 +195,13 @@
           <section class="action-row" aria-labelledby="actions-title">
             <h2 class="sr-only" id="actions-title">Action buttons</h2>
             <button class="secondary-button" type="button" data-action="download">
-              Download PNG
+              Export PNG
             </button>
             <button class="secondary-button" type="button" data-action="copy">
-              Copy Image
+              Copy Preview
             </button>
             <button class="secondary-button" type="button" data-action="regenerate">
-              Regenerate
+              Refresh Preview
             </button>
           </section>
         </section>
