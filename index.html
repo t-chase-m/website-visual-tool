@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main class="page-shell">
+    <main class="page-shell is-prelaunch" id="page-shell">
       <header class="hero" aria-labelledby="page-title">
         <p class="eyebrow">Static front-end prototype</p>
         <h1 id="page-title">Turn any website URL into a share-ready visual.</h1>
@@ -36,9 +36,8 @@
                 type="url"
                 inputmode="url"
                 placeholder="https://example.com"
-                value="https://example.com"
               />
-              <button class="primary-button" type="submit">Generate visual</button>
+              <button class="primary-button" type="submit" disabled>Generate Visual</button>
             </div>
           </section>
 

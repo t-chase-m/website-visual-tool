@@ -1,3 +1,4 @@
+const pageShell = document.getElementById("page-shell");
 const form = document.getElementById("visual-form");
 const urlInput = document.getElementById("url-input");
 const generateButton = form.querySelector(".primary-button");
@@ -10,7 +11,7 @@ const state = {
   device: "Desktop",
   style: "Clean",
   isLoading: false,
-  hasGenerated: true,
+  hasGenerated: false,
   loadingTimer: null,
 };
 
@@ -39,6 +40,14 @@ function updateGenerateButton() {
 
 function updatePreviewStatus(message) {
   previewStatus.textContent = message;
+}
+
+function isPrelaunchState() {
+  return pageShell.classList.contains("is-prelaunch");
+}
+
+function revealWorkspace() {
+  pageShell.classList.remove("is-prelaunch");
 }
 
 function getPreviewMarkup() {
@@ -130,6 +139,7 @@ function startGeneration() {
     return;
   }
 
+  revealWorkspace();
   clearTimeout(state.loadingTimer);
   state.isLoading = true;
   renderPreview();
@@ -160,6 +170,11 @@ toggleGroups.forEach((group) => {
     state[groupName] = button.dataset.value;
 
     updateToggleGroup(group, button);
+
+    if (isPrelaunchState()) {
+      return;
+    }
+
     renderPreview();
 
     if (state.isLoading) {
@@ -184,19 +199,27 @@ form.addEventListener("submit", (event) => {
 });
 
 urlInput.addEventListener("input", () => {
+  const hasUrl = urlInput.value.trim() !== "";
+
   updateGenerateButton();
 
-  if (!state.isLoading) {
+  if (!state.isLoading && !isPrelaunchState()) {
     renderPreview();
   }
 
-  if (urlInput.value.trim() === "") {
+  if (!hasUrl) {
     state.hasGenerated = false;
+    if (isPrelaunchState()) {
+      return;
+    }
     updatePreviewStatus("Enter a URL to generate a preview");
     return;
   }
 
   if (!state.hasGenerated) {
+    if (isPrelaunchState()) {
+      return;
+    }
     updatePreviewStatus("Ready to generate");
   }
 });
@@ -223,4 +246,4 @@ actionButtons.forEach((button) => {
 
 updateGenerateButton();
 renderPreview();
-updatePreviewStatus("Ready to generate");
+updatePreviewStatus("Enter a URL to generate a preview");

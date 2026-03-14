@@ -59,12 +59,69 @@ input {
   width: min(1120px, calc(100% - 32px));
   margin: 0 auto;
   padding: 72px 0 88px;
+  transition:
+    width 220ms ease,
+    padding 220ms ease;
+}
+
+.page-shell.is-prelaunch {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 48px 0;
+}
+
+.page-shell.is-prelaunch .toolbar,
+.page-shell.is-prelaunch .preview-panel {
+  display: none;
+}
+
+.page-shell.is-prelaunch::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at top center, rgba(255, 255, 255, 0.92), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.42), transparent 28%);
+  pointer-events: none;
 }
 
 .hero {
   max-width: 700px;
   margin: 0 auto 36px;
   text-align: center;
+  transition:
+    max-width 220ms ease,
+    margin 220ms ease;
+}
+
+.page-shell.is-prelaunch .hero {
+  position: relative;
+  z-index: 1;
+  display: block;
+  max-width: 680px;
+  margin: 0 auto 28px;
+}
+
+.page-shell.is-prelaunch .eyebrow {
+  margin-bottom: 14px;
+  color: rgba(75, 85, 99, 0.78);
+  letter-spacing: 0.12em;
+}
+
+.page-shell.is-prelaunch .hero h1 {
+  max-width: 11ch;
+  margin: 0 auto;
+  font-size: clamp(2.9rem, 5.6vw, 4.8rem);
+  line-height: 0.96;
+}
+
+.page-shell.is-prelaunch .hero-copy {
+  max-width: 54ch;
+  margin-top: 20px;
+  color: rgba(75, 85, 99, 0.88);
+  font-size: 1.08rem;
+  line-height: 1.82;
 }
 
 .eyebrow {
@@ -102,6 +159,43 @@ input {
   background: var(--panel);
   box-shadow: var(--shadow-lg);
   backdrop-filter: blur(18px);
+  transition:
+    grid-template-columns 220ms ease,
+    gap 220ms ease,
+    padding 220ms ease,
+    border-radius 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.page-shell:not(.is-prelaunch) {
+  width: min(1240px, calc(100% - 40px));
+  padding: 56px 0 72px;
+}
+
+.page-shell:not(.is-prelaunch) .hero {
+  max-width: 760px;
+  margin: 0 auto 30px;
+}
+
+.page-shell:not(.is-prelaunch) .app-card {
+  grid-template-columns: minmax(300px, 360px) minmax(0, 1fr);
+  gap: 28px;
+  align-items: stretch;
+  padding: 24px;
+}
+
+.page-shell.is-prelaunch .app-card {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 720px);
+  grid-template-columns: 1fr;
+  gap: 0;
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 24px 60px rgba(17, 24, 39, 0.08);
+  backdrop-filter: blur(24px);
 }
 
 .control-panel,
@@ -117,9 +211,33 @@ input {
   padding: 28px;
 }
 
+.page-shell:not(.is-prelaunch) .control-panel {
+  gap: 24px;
+  padding: 30px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.68);
+}
+
+.page-shell.is-prelaunch .control-panel {
+  padding: 20px;
+  border: 0;
+  background: transparent;
+}
+
 .field-group {
   display: grid;
   gap: 12px;
+}
+
+.page-shell:not(.is-prelaunch) .field-group {
+  gap: 14px;
+}
+
+.page-shell.is-prelaunch .field-group {
+  gap: 18px;
+}
+
+.page-shell.is-prelaunch .field-label {
+  display: none;
 }
 
 .field-label {
@@ -133,6 +251,40 @@ input {
 .input-row {
   display: grid;
   gap: 12px;
+}
+
+.page-shell:not(.is-prelaunch) .input-row {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+}
+
+.page-shell.is-prelaunch .input-row {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+}
+
+.page-shell.is-prelaunch .url-input {
+  min-height: 68px;
+  padding: 0 22px;
+  border-color: rgba(15, 23, 42, 0.06);
+  border-radius: 18px;
+  background: rgba(248, 248, 248, 0.94);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    0 10px 24px rgba(17, 24, 39, 0.04);
+}
+
+.page-shell.is-prelaunch .url-input::placeholder {
+  color: rgba(107, 114, 128, 0.7);
+}
+
+.page-shell.is-prelaunch .url-input:focus {
+  border-color: rgba(31, 41, 55, 0.12);
+  box-shadow:
+    0 0 0 6px rgba(17, 24, 39, 0.05),
+    0 14px 28px rgba(17, 24, 39, 0.07);
 }
 
 .url-input {
@@ -163,6 +315,11 @@ input {
 .toolbar {
   display: grid;
   gap: 20px;
+}
+
+.page-shell:not(.is-prelaunch) .toolbar {
+  gap: 22px;
+  padding-top: 4px;
 }
 
 .segmented-group {
@@ -218,8 +375,49 @@ input {
   box-shadow: var(--shadow-sm);
 }
 
+.page-shell:not(.is-prelaunch) .primary-button {
+  min-width: 150px;
+}
+
+.page-shell.is-prelaunch .primary-button {
+  min-width: 194px;
+  min-height: 68px;
+  padding: 0 24px;
+  border-radius: 18px;
+  box-shadow: 0 14px 30px rgba(17, 24, 39, 0.1);
+}
+
+.primary-button:disabled {
+  cursor: not-allowed;
+  background: #d8dde4;
+  color: rgba(75, 85, 99, 0.82);
+  box-shadow: none;
+  transform: none;
+}
+
 .primary-button:hover {
   background: var(--primary-hover);
+}
+
+.primary-button:disabled:hover {
+  background: #d8dde4;
+}
+
+.page-shell.is-prelaunch .primary-button:disabled {
+  border: 1px solid rgba(15, 23, 42, 0.04);
+  background: linear-gradient(180deg, #eef1f4 0%, #dfe4ea 100%);
+  color: rgba(100, 116, 139, 0.95);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.88),
+    0 8px 18px rgba(17, 24, 39, 0.03);
+}
+
+.page-shell.is-prelaunch .primary-button:disabled:hover,
+.page-shell.is-prelaunch .primary-button:disabled:active {
+  transform: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.88),
+    0 8px 18px rgba(17, 24, 39, 0.03);
 }
 
 .segment-button {
@@ -240,6 +438,13 @@ input {
 .preview-panel {
   padding: 28px;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.page-shell:not(.is-prelaunch) .preview-panel {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 0;
+  padding: 30px;
 }
 
 .preview-header {
@@ -288,6 +493,11 @@ input {
     radial-gradient(circle at top center, rgba(255, 255, 255, 0.95), transparent 35%),
     linear-gradient(180deg, #f6f6f6 0%, #eeeeee 100%);
   overflow: hidden;
+}
+
+.page-shell:not(.is-prelaunch) .preview-stage {
+  min-height: 540px;
+  padding: 32px;
 }
 
 .preview-stage::before {
@@ -452,8 +662,32 @@ input {
     grid-template-columns: 1fr;
   }
 
+  .page-shell:not(.is-prelaunch) {
+    width: min(100% - 28px, 1120px);
+    padding: 44px 0 60px;
+  }
+
+  .page-shell:not(.is-prelaunch) .hero {
+    margin-bottom: 24px;
+  }
+
+  .page-shell:not(.is-prelaunch) .app-card {
+    gap: 20px;
+    padding: 18px;
+  }
+
+  .page-shell:not(.is-prelaunch) .control-panel,
+  .page-shell:not(.is-prelaunch) .preview-panel {
+    padding: 24px;
+  }
+
   .preview-stage {
     min-height: 420px;
+  }
+
+  .page-shell:not(.is-prelaunch) .preview-stage {
+    min-height: 460px;
+    padding: 24px;
   }
 }
 
@@ -463,15 +697,60 @@ input {
     padding: 40px 0 56px;
   }
 
+  .page-shell.is-prelaunch {
+    padding: 28px 0;
+  }
+
+  .page-shell:not(.is-prelaunch) {
+    width: min(100% - 20px, 1120px);
+    padding: 32px 0 52px;
+  }
+
   .app-card {
     padding: 14px;
     border-radius: 24px;
+  }
+
+  .page-shell.is-prelaunch .app-card {
+    padding: 16px;
+  }
+
+  .page-shell:not(.is-prelaunch) .hero {
+    margin-bottom: 20px;
+  }
+
+  .page-shell:not(.is-prelaunch) .app-card {
+    gap: 16px;
+    padding: 14px;
+  }
+
+  .page-shell.is-prelaunch .hero {
+    margin-bottom: 22px;
+  }
+
+  .page-shell.is-prelaunch .hero h1 {
+    max-width: 12ch;
+    font-size: clamp(2.35rem, 10vw, 3.35rem);
+  }
+
+  .page-shell.is-prelaunch .hero-copy {
+    font-size: 1rem;
+    line-height: 1.72;
+  }
+
+  .page-shell.is-prelaunch .control-panel {
+    padding: 12px;
   }
 
   .control-panel,
   .preview-panel {
     padding: 22px;
     border-radius: 20px;
+  }
+
+  .page-shell:not(.is-prelaunch) .control-panel,
+  .page-shell:not(.is-prelaunch) .preview-panel {
+    padding: 20px;
   }
 
   .preview-header {
@@ -508,5 +787,29 @@ input {
 
   .action-row {
     flex-direction: column;
+  }
+
+  .page-shell.is-prelaunch .input-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .page-shell:not(.is-prelaunch) .input-row {
+    grid-template-columns: 1fr;
+  }
+
+  .page-shell.is-prelaunch .url-input,
+  .page-shell.is-prelaunch .primary-button {
+    min-height: 62px;
+  }
+
+  .page-shell.is-prelaunch .primary-button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .page-shell:not(.is-prelaunch) .primary-button {
+    width: 100%;
+    min-width: 0;
   }
 }
