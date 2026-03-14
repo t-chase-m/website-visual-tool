@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website Visual Tool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">Static front-end prototype</p>
+        <h1 id="page-title">Turn any website URL into a share-ready visual.</h1>
+        <p class="hero-copy">
+          Mock up polished website visuals for launches, social posts, and client
+          reviews in a clean, modern workspace.
+        </p>
+      </section>
+
+      <section class="app-card" aria-label="Website visual generator">
+        <form class="control-panel" id="visual-form">
+          <div class="field-group">
+            <label class="field-label" for="url-input">Website URL</label>
+            <div class="input-row">
+              <input
+                class="url-input"
+                id="url-input"
+                name="url"
+                type="url"
+                inputmode="url"
+                placeholder="https://example.com"
+                value="https://example.com"
+              />
+              <button class="primary-button" type="submit">Generate visual</button>
+            </div>
+          </div>
+
+          <div class="toolbar" aria-label="Preview controls">
+            <fieldset class="segmented-group">
+              <legend class="field-label">Device</legend>
+              <div class="segmented-control" data-toggle-group="device">
+                <button
+                  class="segment-button is-active"
+                  type="button"
+                  data-value="Desktop"
+                  aria-pressed="true"
+                >
+                  Desktop
+                </button>
+                <button
+                  class="segment-button"
+                  type="button"
+                  data-value="Mobile"
+                  aria-pressed="false"
+                >
+                  Mobile
+                </button>
+              </div>
+            </fieldset>
+
+            <fieldset class="segmented-group">
+              <legend class="field-label">Style</legend>
+              <div class="segmented-control" data-toggle-group="style">
+                <button
+                  class="segment-button is-active"
+                  type="button"
+                  data-value="Clean"
+                  aria-pressed="true"
+                >
+                  Clean
+                </button>
+                <button
+                  class="segment-button"
+                  type="button"
+                  data-value="Marketing Canvas"
+                  aria-pressed="false"
+                >
+                  Marketing Canvas
+                </button>
+              </div>
+            </fieldset>
+          </div>
+        </form>
+
+        <section class="preview-panel" aria-labelledby="preview-title">
+          <div class="preview-header">
+            <div>
+              <p class="preview-kicker">Preview</p>
+              <h2 id="preview-title">Generated concept</h2>
+            </div>
+            <p class="preview-status" id="preview-status">Ready to generate</p>
+          </div>
+
+          <div class="preview-stage" id="preview-stage" data-device="Desktop" data-style="Clean">
+            <div class="canvas-frame">
+              <div class="browser-chrome">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="mock-visual" id="mock-visual">
+                <div class="mock-badge" id="mock-device-label">Desktop</div>
+                <div class="mock-url" id="mock-url">example.com</div>
+                <div class="mock-headline">Modern website visual preview</div>
+                <div class="mock-copy">
+                  This static mockup simulates how a captured page could be framed,
+                  styled, and exported for sharing.
+                </div>
+                <div class="mock-metrics">
+                  <div class="metric-card">
+                    <span class="metric-label">Format</span>
+                    <strong id="mock-style-label">Clean</strong>
+                  </div>
+                  <div class="metric-card">
+                    <span class="metric-label">Output</span>
+                    <strong>PNG mockup</strong>
+                  </div>
+                  <div class="metric-card">
+                    <span class="metric-label">State</span>
+                    <strong>Prototype</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button class="secondary-button" type="button" data-action="download">
+              Download PNG
+            </button>
+            <button class="secondary-button" type="button" data-action="copy">
+              Copy Image
+            </button>
+            <button class="secondary-button" type="button" data-action="regenerate">
+              Regenerate
+            </button>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
