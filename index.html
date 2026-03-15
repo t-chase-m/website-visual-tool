@@ -14,198 +14,200 @@
   </head>
   <body>
     <main class="page-shell is-prelaunch" id="page-shell">
-      <header class="hero" aria-labelledby="page-title">
-        <p class="eyebrow">Front-end prototype</p>
-        <h1 id="page-title">Turn any website URL into a share-ready visual.</h1>
-        <p class="hero-copy">
-          Create polished website visuals for launches, social posts, and client
-          reviews in a calm, focused workspace.
-        </p>
-      </header>
+      <div class="landing-container">
+        <header class="hero" aria-labelledby="page-title">
+          <p class="eyebrow">Front-end prototype</p>
+          <h1 id="page-title">Turn any website URL into a share-ready visual.</h1>
+          <p class="hero-copy">
+            Create polished website visuals for launches, social posts, and client
+            reviews in a calm, focused workspace.
+          </p>
+        </header>
 
-      <form class="app-card" id="visual-form" aria-label="Website visual generator">
-        <section class="control-panel" aria-label="Generator controls">
-          <section class="field-group" aria-labelledby="url-row-title">
-            <h2 class="field-label" id="url-row-title">Website URL</h2>
-            <div class="input-row">
-              <label class="sr-only" for="url-input">Website URL</label>
-              <input
-                class="url-input"
-                id="url-input"
-                name="url"
-                type="url"
-                inputmode="url"
-                placeholder="https://example.com"
-              />
-              <button class="primary-button" type="submit" disabled>Generate Preview</button>
-            </div>
+        <form class="app-card" id="visual-form" aria-label="Website visual generator">
+          <section class="control-panel" aria-label="Generator controls">
+            <section class="field-group" aria-labelledby="url-row-title">
+              <h2 class="field-label" id="url-row-title">Website URL</h2>
+              <div class="input-row">
+                <label class="sr-only" for="url-input">Website URL</label>
+                <input
+                  class="url-input"
+                  id="url-input"
+                  name="url"
+                  type="url"
+                  inputmode="url"
+                  placeholder="https://example.com"
+                />
+                <button class="primary-button" type="submit" disabled>Generate Preview</button>
+              </div>
+            </section>
+
+            <section class="toolbar" aria-labelledby="controls-title">
+              <h2 class="field-label" id="controls-title">Presentation</h2>
+
+              <fieldset class="segmented-group">
+                <legend class="field-label">Device</legend>
+                <div class="segmented-control" data-toggle-group="device">
+                  <button
+                    class="segment-button is-active"
+                    type="button"
+                    data-value="Desktop"
+                    aria-pressed="true"
+                  >
+                    Desktop
+                  </button>
+                  <button
+                    class="segment-button"
+                    type="button"
+                    data-value="Mobile"
+                    aria-pressed="false"
+                  >
+                    Mobile
+                  </button>
+                </div>
+              </fieldset>
+
+              <fieldset class="segmented-group">
+                <legend class="field-label">Style</legend>
+                <div class="segmented-control" data-toggle-group="style">
+                  <button
+                    class="segment-button is-active"
+                    type="button"
+                    data-value="Clean"
+                    aria-pressed="true"
+                  >
+                    Clean
+                  </button>
+                  <button
+                    class="segment-button"
+                    type="button"
+                    data-value="Marketing Canvas"
+                    aria-pressed="false"
+                  >
+                    Marketing Canvas
+                  </button>
+                  <button
+                    class="segment-button"
+                    type="button"
+                    data-value="Browser Window"
+                    aria-pressed="false"
+                  >
+                    Browser Window
+                  </button>
+                </div>
+              </fieldset>
+            </section>
           </section>
 
-          <section class="toolbar" aria-labelledby="controls-title">
-            <h2 class="field-label" id="controls-title">Presentation</h2>
-
-            <fieldset class="segmented-group">
-              <legend class="field-label">Device</legend>
-              <div class="segmented-control" data-toggle-group="device">
-                <button
-                  class="segment-button is-active"
-                  type="button"
-                  data-value="Desktop"
-                  aria-pressed="true"
-                >
-                  Desktop
-                </button>
-                <button
-                  class="segment-button"
-                  type="button"
-                  data-value="Mobile"
-                  aria-pressed="false"
-                >
-                  Mobile
-                </button>
+          <section class="preview-panel" aria-labelledby="preview-title">
+            <div class="preview-header">
+              <div>
+                <p class="preview-kicker">Live preview</p>
+                <h2 id="preview-title">Visual concept</h2>
               </div>
-            </fieldset>
-
-            <fieldset class="segmented-group">
-              <legend class="field-label">Style</legend>
-              <div class="segmented-control" data-toggle-group="style">
-                <button
-                  class="segment-button is-active"
-                  type="button"
-                  data-value="Clean"
-                  aria-pressed="true"
-                >
-                  Clean
-                </button>
-                <button
-                  class="segment-button"
-                  type="button"
-                  data-value="Marketing Canvas"
-                  aria-pressed="false"
-                >
-                  Marketing Canvas
-                </button>
-                <button
-                  class="segment-button"
-                  type="button"
-                  data-value="Browser Window"
-                  aria-pressed="false"
-                >
-                  Browser Window
-                </button>
-              </div>
-            </fieldset>
-          </section>
-        </section>
-
-        <section class="preview-panel" aria-labelledby="preview-title">
-          <div class="preview-header">
-            <div>
-              <p class="preview-kicker">Live preview</p>
-              <h2 id="preview-title">Visual concept</h2>
+              <p class="preview-status" id="preview-status">Ready</p>
             </div>
-            <p class="preview-status" id="preview-status">Ready</p>
-          </div>
 
-          <div class="preview-stage" id="preview-stage" data-device="Desktop" data-style="Clean">
-            <div class="canvas-frame">
-              <div class="browser-chrome">
-                <div class="browser-chrome-controls">
-                  <span></span>
-                  <span></span>
-                  <span></span>
+            <div class="preview-stage" id="preview-stage" data-device="Desktop" data-style="Clean">
+              <div class="canvas-frame">
+                <div class="browser-chrome">
+                  <div class="browser-chrome-controls">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <div class="browser-address-bar">example.com</div>
                 </div>
-                <div class="browser-address-bar">example.com</div>
-              </div>
-              <div class="mock-visual" id="mock-visual">
-                <div class="mock-badge" id="mock-device-label">Desktop</div>
-                <div class="mock-sitebar">
-                  <div class="mock-brand-lockup">
-                    <span class="mock-brand-mark"></span>
-                    <div>
-                      <div class="mock-brand-name">Example</div>
-                      <div class="mock-url" id="mock-url">example.com</div>
+                <div class="mock-visual" id="mock-visual">
+                  <div class="mock-badge" id="mock-device-label">Desktop</div>
+                  <div class="mock-sitebar">
+                    <div class="mock-brand-lockup">
+                      <span class="mock-brand-mark"></span>
+                      <div>
+                        <div class="mock-brand-name">Example</div>
+                        <div class="mock-url" id="mock-url">example.com</div>
+                      </div>
+                    </div>
+                    <div class="mock-nav">
+                      <span>Product</span>
+                      <span>Solutions</span>
+                      <span>Pricing</span>
                     </div>
                   </div>
-                  <div class="mock-nav">
-                    <span>Product</span>
-                    <span>Solutions</span>
-                    <span>Pricing</span>
-                  </div>
-                </div>
-                <section class="mock-hero">
-                  <div class="mock-hero-copy">
-                    <div class="mock-kicker">Featured website</div>
-                    <div class="mock-headline">Modern website visual preview</div>
-                    <div class="mock-copy">
-                      A polished placeholder composition that feels closer to a
-                      real captured homepage.
+                  <section class="mock-hero">
+                    <div class="mock-hero-copy">
+                      <div class="mock-kicker">Featured website</div>
+                      <div class="mock-headline">Modern website visual preview</div>
+                      <div class="mock-copy">
+                        A polished placeholder composition that feels closer to a
+                        real captured homepage.
+                      </div>
+                      <div class="mock-hero-actions">
+                        <span class="mock-button-pill">Explore</span>
+                        <span class="mock-button-pill is-secondary">See details</span>
+                      </div>
                     </div>
-                    <div class="mock-hero-actions">
-                      <span class="mock-button-pill">Explore</span>
-                      <span class="mock-button-pill is-secondary">See details</span>
+                    <div class="mock-hero-panel">
+                      <div class="mock-panel-chart"></div>
+                      <div class="mock-panel-row"></div>
+                      <div class="mock-panel-row is-short"></div>
+                      <div class="mock-panel-grid">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                    </div>
+                  </section>
+                  <div class="mock-metrics">
+                    <div class="metric-card">
+                      <span class="metric-label">Style</span>
+                      <strong id="mock-style-label">Clean</strong>
+                    </div>
+                    <div class="metric-card">
+                      <span class="metric-label">Output</span>
+                      <strong>Preview ready</strong>
+                    </div>
+                    <div class="metric-card">
+                      <span class="metric-label">State</span>
+                      <strong>Concept</strong>
                     </div>
                   </div>
-                  <div class="mock-hero-panel">
-                    <div class="mock-panel-chart"></div>
-                    <div class="mock-panel-row"></div>
-                    <div class="mock-panel-row is-short"></div>
-                    <div class="mock-panel-grid">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
+                  <div class="mock-content-grid">
+                    <article class="mock-content-card">
+                      <span class="mock-card-label">Overview</span>
+                      <strong>Balanced page structure</strong>
+                      <p>Subtle sections help the preview read like a composed homepage.</p>
+                    </article>
+                    <article class="mock-content-card">
+                      <span class="mock-card-label">Highlights</span>
+                      <strong>Clear content rhythm</strong>
+                      <p>Navigation, hero content, and cards create a more credible capture.</p>
+                    </article>
+                    <article class="mock-content-card">
+                      <span class="mock-card-label">Output</span>
+                      <strong>Presentation-ready framing</strong>
+                      <p>The result stays minimal while feeling more product-like and intentional.</p>
+                    </article>
                   </div>
-                </section>
-                <div class="mock-metrics">
-                  <div class="metric-card">
-                    <span class="metric-label">Style</span>
-                    <strong id="mock-style-label">Clean</strong>
-                  </div>
-                  <div class="metric-card">
-                    <span class="metric-label">Output</span>
-                    <strong>Preview ready</strong>
-                  </div>
-                  <div class="metric-card">
-                    <span class="metric-label">State</span>
-                    <strong>Concept</strong>
-                  </div>
-                </div>
-                <div class="mock-content-grid">
-                  <article class="mock-content-card">
-                    <span class="mock-card-label">Overview</span>
-                    <strong>Balanced page structure</strong>
-                    <p>Subtle sections help the preview read like a composed homepage.</p>
-                  </article>
-                  <article class="mock-content-card">
-                    <span class="mock-card-label">Highlights</span>
-                    <strong>Clear content rhythm</strong>
-                    <p>Navigation, hero content, and cards create a more credible capture.</p>
-                  </article>
-                  <article class="mock-content-card">
-                    <span class="mock-card-label">Output</span>
-                    <strong>Presentation-ready framing</strong>
-                    <p>The result stays minimal while feeling more product-like and intentional.</p>
-                  </article>
                 </div>
               </div>
             </div>
-          </div>
 
-          <section class="action-row" aria-labelledby="actions-title">
-            <h2 class="sr-only" id="actions-title">Action buttons</h2>
-            <button class="secondary-button" type="button" data-action="download">
-              Export PNG
-            </button>
-            <button class="secondary-button" type="button" data-action="copy">
-              Copy Preview
-            </button>
-            <button class="secondary-button" type="button" data-action="regenerate">
-              Refresh Preview
-            </button>
+            <section class="action-row" aria-labelledby="actions-title">
+              <h2 class="sr-only" id="actions-title">Action buttons</h2>
+              <button class="secondary-button" type="button" data-action="download">
+                Export PNG
+              </button>
+              <button class="secondary-button" type="button" data-action="copy">
+                Copy Preview
+              </button>
+              <button class="secondary-button" type="button" data-action="regenerate">
+                Refresh Preview
+              </button>
+            </section>
           </section>
-        </section>
-      </form>
+        </form>
+      </div>
     </main>
 
     <script src="app.js"></script>

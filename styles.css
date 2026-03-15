@@ -56,12 +56,15 @@ input {
 }
 
 .page-shell {
-  width: min(1120px, calc(100% - 32px));
-  margin: 0 auto;
+  width: 100%;
   padding: 72px 0 88px;
   transition:
-    width 220ms ease,
     padding 220ms ease;
+}
+
+.landing-container {
+  width: min(1200px, calc(100% - 40px));
+  margin: 0 auto;
 }
 
 .page-shell.is-prelaunch {
@@ -87,6 +90,8 @@ input {
 }
 
 .hero {
+  display: grid;
+  justify-items: center;
   max-width: 700px;
   margin: 0 auto 36px;
   text-align: center;
@@ -98,7 +103,7 @@ input {
 .page-shell.is-prelaunch .hero {
   position: relative;
   z-index: 1;
-  display: block;
+  display: grid;
   max-width: 680px;
   margin: 0 auto 28px;
 }
@@ -168,13 +173,16 @@ input {
 }
 
 .page-shell:not(.is-prelaunch) {
-  width: min(1240px, calc(100% - 40px));
   padding: 56px 0 72px;
 }
 
 .page-shell:not(.is-prelaunch) .hero {
   max-width: 760px;
   margin: 0 auto 30px;
+}
+
+.page-shell:not(.is-prelaunch) .landing-container {
+  width: min(1240px, calc(100% - 40px));
 }
 
 .page-shell:not(.is-prelaunch) .app-card {
@@ -188,6 +196,7 @@ input {
   position: relative;
   z-index: 1;
   width: min(100%, 720px);
+  margin: 0 auto;
   grid-template-columns: 1fr;
   gap: 0;
   padding: 22px;
@@ -223,6 +232,8 @@ input {
 
 .page-shell.is-prelaunch .control-panel {
   padding: 20px;
+  width: 100%;
+  max-width: none;
   border: 0;
   background: transparent;
 }
@@ -258,9 +269,9 @@ input {
 }
 
 .page-shell:not(.is-prelaunch) .input-row {
-  grid-template-columns: minmax(0, 1fr) max-content;
-  align-items: center;
-  gap: 10px;
+  grid-template-columns: 1fr;
+  align-items: stretch;
+  gap: 12px;
 }
 
 .page-shell.is-prelaunch .input-row {
@@ -350,6 +361,8 @@ input {
 
 .page-shell:not(.is-prelaunch) .segmented-control {
   width: 100%;
+  grid-auto-flow: row;
+  align-items: stretch;
 }
 
 .page-shell:not(.is-prelaunch) [data-toggle-group="device"] {
@@ -362,6 +375,12 @@ input {
 
 .page-shell:not(.is-prelaunch) [data-toggle-group="style"] .segment-button:last-child {
   grid-column: 1 / -1;
+}
+
+.page-shell:not(.is-prelaunch) .segment-button {
+  width: 100%;
+  min-width: 0;
+  padding: 0 14px;
 }
 
 .primary-button,
@@ -400,7 +419,8 @@ input {
 }
 
 .page-shell:not(.is-prelaunch) .primary-button {
-  min-width: 132px;
+  width: 100%;
+  min-width: 0;
 }
 
 .page-shell.is-prelaunch .primary-button {
@@ -1041,8 +1061,11 @@ input {
 
 @media (max-width: 640px) {
   .page-shell {
-    width: min(100% - 20px, 1120px);
     padding: 40px 0 56px;
+  }
+
+  .landing-container {
+    width: min(100% - 20px, 1200px);
   }
 
   .page-shell.is-prelaunch {
@@ -1050,8 +1073,11 @@ input {
   }
 
   .page-shell:not(.is-prelaunch) {
-    width: min(100% - 20px, 1120px);
     padding: 32px 0 52px;
+  }
+
+  .page-shell:not(.is-prelaunch) .landing-container {
+    width: min(100% - 20px, 1240px);
   }
 
   .app-card {
