@@ -9,10 +9,17 @@ const actionButtons = document.querySelectorAll("[data-action]");
 
 const state = {
   device: "Desktop",
-  style: "Clean",
+  frameStyle: "clean",
+  backgroundEnabled: false,
+  backgroundGradient: null,
   isLoading: false,
   hasGenerated: false,
   loadingTimer: null,
+};
+
+const FRAME_STYLE_LABELS = {
+  clean: "Clean",
+  browser: "Browser",
 };
 
 function escapeHtml(value) {
@@ -64,6 +71,50 @@ function getDomainParts(domain) {
 
 function toTitleCase(value) {
   return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
+function createSeededRandom(seed) {
+  let hash = 1779033703 ^ seed.length;
+
+  for (let index = 0; index < seed.length; index += 1) {
+    hash = Math.imul(hash ^ seed.charCodeAt(index), 3432918353);
+    hash = (hash << 13) | (hash >>> 19);
+  }
+
+  return () => {
+    hash = Math.imul(hash ^ (hash >>> 16), 2246822507);
+    hash = Math.imul(hash ^ (hash >>> 13), 3266489909);
+    hash ^= hash >>> 16;
+
+    return (hash >>> 0) / 4294967296;
+  };
+}
+
+function generateBackgroundGradient() {
+  const random = createSeededRandom(
+    `${Date.now()}-${Math.random().toString(36).slice(2)}`
+  );
+  const palettes = [
+    { hue: 214, tint: 22, glow: 212 },
+    { hue: 206, tint: 18, glow: 202 },
+    { hue: 198, tint: 16, glow: 192 },
+    { hue: 224, tint: 20, glow: 218 },
+  ];
+  const palette = palettes[Math.floor(random() * palettes.length)];
+  const angle = Math.round(132 + random() * 36);
+  const glowX = Math.round(18 + random() * 58);
+  const glowY = Math.round(8 + random() * 26);
+  const haloX = Math.round(70 + random() * 18);
+  const haloY = Math.round(74 + random() * 16);
+  const surfaceHue = palette.hue + Math.round(random() * 10 - 5);
+  const tintHue = palette.tint + Math.round(random() * 10 - 5);
+  const glowHue = palette.glow + Math.round(random() * 12 - 6);
+
+  return [
+    `radial-gradient(circle at ${glowX}% ${glowY}%, hsla(${glowHue}, 42%, 97%, 0.92), transparent 34%)`,
+    `radial-gradient(circle at ${haloX}% ${haloY}%, hsla(${tintHue}, 34%, 91%, 0.72), transparent 38%)`,
+    `linear-gradient(${angle}deg, hsl(${surfaceHue}, 30%, 98%) 0%, hsl(${palette.hue}, 28%, 95%) 46%, hsl(${tintHue}, 30%, 91%) 100%)`,
+  ].join(", ");
 }
 
 function buildBrandName(root) {
@@ -170,6 +221,10 @@ function getSiteProfile(rawUrl) {
   };
 }
 
+function getFrameStyleLabel(frameStyle) {
+  return FRAME_STYLE_LABELS[frameStyle] || "Clean";
+}
+
 function renderLoadingMarkup(profile) {
   return `
     <div class="canvas-frame">
@@ -205,7 +260,7 @@ function renderLoadingMarkup(profile) {
             <div class="mock-kicker">Generating preview</div>
             <div class="mock-headline">Composing a polished preview for ${escapeHtml(profile.brandName)}</div>
             <div class="mock-copy">
-              Refining navigation, hero content, and supporting sections in a ${escapeHtml(state.style.toLowerCase())} presentation.
+              Refining navigation, hero content, and supporting sections in a ${escapeHtml(getFrameStyleLabel(state.frameStyle).toLowerCase())} presentation.
             </div>
           </div>
           <div class="mock-hero-panel">
@@ -230,7 +285,7 @@ function renderLoadingMarkup(profile) {
           </div>
           <div class="metric-card">
             <span class="metric-label">Style</span>
-            <strong>${escapeHtml(state.style)}</strong>
+            <strong>${escapeHtml(getFrameStyleLabel(state.frameStyle))}</strong>
           </div>
         </div>
       </div>
@@ -343,9 +398,18 @@ function getPreviewMarkup() {
   return renderGeneratedMarkup(profile);
 }
 
+function applyPreviewBackground() {
+  previewStage.style.setProperty(
+    "--preview-stage-background",
+    state.backgroundEnabled ? state.backgroundGradient : "transparent"
+  );
+}
+
 function renderPreview() {
   previewStage.dataset.device = state.device;
-  previewStage.dataset.style = state.style;
+  previewStage.dataset.frameStyle = state.frameStyle;
+  previewStage.dataset.backgroundEnabled = String(state.backgroundEnabled);
+  applyPreviewBackground();
   previewStage.innerHTML = getPreviewMarkup();
 }
 
@@ -353,7 +417,9 @@ function finishGeneration() {
   state.isLoading = false;
   state.hasGenerated = true;
   renderPreview();
-  updatePreviewStatus(`Preview ready for ${normalizeUrl(urlInput.value)}`);
+  updatePreviewStatus(
+    `Preview ready for ${normalizeUrl(urlInput.value)} · ${getFrameStyleLabel(state.frameStyle)}${state.backgroundEnabled ? " + gradient" : ""}`
+  );
 }
 
 function startGeneration() {
@@ -380,6 +446,24 @@ function updateToggleGroup(group, activeButton) {
   });
 }
 
+function parseToggleValue(groupName, rawValue) {
+  if (groupName === "backgroundEnabled") {
+    return rawValue === "true";
+  }
+
+  return rawValue;
+}
+
+function getStatusLabel() {
+  const parts = [state.device, getFrameStyleLabel(state.frameStyle)];
+
+  if (state.backgroundEnabled) {
+    parts.push("Gradient background");
+  }
+
+  return parts.join(" · ");
+}
+
 toggleGroups.forEach((group) => {
   group.addEventListener("click", (event) => {
     const button = event.target.closest(".segment-button");
@@ -389,7 +473,7 @@ toggleGroups.forEach((group) => {
     }
 
     const groupName = group.dataset.toggleGroup;
-    state[groupName] = button.dataset.value;
+    state[groupName] = parseToggleValue(groupName, button.dataset.value);
 
     updateToggleGroup(group, button);
 
@@ -405,9 +489,7 @@ toggleGroups.forEach((group) => {
     }
 
     if (state.hasGenerated) {
-      updatePreviewStatus(
-        `${state.device} · ${state.style}`
-      );
+      updatePreviewStatus(getStatusLabel());
       return;
     }
 
@@ -467,5 +549,6 @@ actionButtons.forEach((button) => {
 });
 
 updateGenerateButton();
+state.backgroundGradient = generateBackgroundGradient();
 renderPreview();
 updatePreviewStatus("Enter a URL to begin");

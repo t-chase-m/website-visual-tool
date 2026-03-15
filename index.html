@@ -69,11 +69,11 @@
 
               <fieldset class="segmented-group">
                 <legend class="field-label">Style</legend>
-                <div class="segmented-control" data-toggle-group="style">
+                <div class="segmented-control is-two-up" data-toggle-group="frameStyle">
                   <button
                     class="segment-button is-active"
                     type="button"
-                    data-value="Clean"
+                    data-value="clean"
                     aria-pressed="true"
                   >
                     Clean
@@ -81,18 +81,32 @@
                   <button
                     class="segment-button"
                     type="button"
-                    data-value="Marketing Canvas"
+                    data-value="browser"
                     aria-pressed="false"
                   >
-                    Marketing Canvas
+                    Browser
+                  </button>
+                </div>
+              </fieldset>
+
+              <fieldset class="segmented-group separated-group">
+                <legend class="field-label">Background</legend>
+                <div class="segmented-control is-two-up" data-toggle-group="backgroundEnabled">
+                  <button
+                    class="segment-button is-active"
+                    type="button"
+                    data-value="false"
+                    aria-pressed="true"
+                  >
+                    None
                   </button>
                   <button
                     class="segment-button"
                     type="button"
-                    data-value="Browser Window"
+                    data-value="true"
                     aria-pressed="false"
                   >
-                    Browser Window
+                    Gradient
                   </button>
                 </div>
               </fieldset>
@@ -108,7 +122,13 @@
               <p class="preview-status" id="preview-status">Ready</p>
             </div>
 
-            <div class="preview-stage" id="preview-stage" data-device="Desktop" data-style="Clean">
+            <div
+              class="preview-stage"
+              id="preview-stage"
+              data-device="Desktop"
+              data-frame-style="clean"
+              data-background-enabled="false"
+            >
               <div class="canvas-frame">
                 <div class="browser-chrome">
                   <div class="browser-chrome-controls">
